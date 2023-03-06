@@ -7,11 +7,14 @@ public class PlayerController : MonoBehaviour
     public int JumpPower;
 
     private float Gravity = -9.81f;
-    public float GravityMultiplier = 3.0f;
+    private float GravityMultiplier = 3.0f;
+    public int Health;
 
     private float Velocity;
 
     private Vector2 Direction;
+    private Animator Anim;
+    public GameObject Claws;
 
     public float Speed;
 
@@ -20,6 +23,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Anim = Claws.GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
     }
 
@@ -38,6 +42,15 @@ public class PlayerController : MonoBehaviour
 
         Direction.x = X;
         controller.Move(Direction * Speed * Time.deltaTime);
+    }
+
+    private void Swing()
+    {
+        if (Input.GetButtonDown("Fire1") == true)
+        {
+            Debug.Log("Swinging");
+            Anim.Play("Slash", 0, 0.0f);
+        }
     }
 
     private void ApplyGravity()
@@ -70,6 +83,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Direction = new Vector2(0, 0);
+        Swing();
         ApplyGravity();
         Jump();
         ApplyMovement();
