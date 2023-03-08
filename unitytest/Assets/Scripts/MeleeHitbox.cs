@@ -25,7 +25,7 @@ public class MeleeHitbox : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             ControllerRef = collision.gameObject;
-            if (ControllerRef.Health == 0)
+            if (ControllerRef.GetComponent<EnemyController>().Health == 0)
             {
                 if (Destroying == false)
                 {
@@ -34,7 +34,7 @@ public class MeleeHitbox : MonoBehaviour
                 }
                 else
                 {
-                    ControllerRef.Health -= 1;
+                    ControllerRef.GetComponent<EnemyController>().Health -= 1;
                     Debug.Log("Enemy Hit!");
                 }
 
