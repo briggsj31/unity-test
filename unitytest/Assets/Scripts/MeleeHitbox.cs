@@ -24,20 +24,21 @@ public class MeleeHitbox : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            ControllerRef = collision.gameObject;
-            if (ControllerRef.GetComponent<EnemyController>().Health == 0)
+            if (gameObject.transform.parent.GetComponent<PlayerController>().Swinging == true)
             {
-                if (Destroying == false)
+                ControllerRef = collision.gameObject;
+                if (ControllerRef.GetComponent<EnemyController>().Health == 0)
                 {
-                    Destroying = true;
-                    Destroy(collision.gameObject, 1);
+                    if (Destroying == false)
+                    {
+                        Destroying = true;
+                        Destroy(collision.gameObject, 1);
+                    }
+                    else
+                    {
+                        ControllerRef.GetComponent<EnemyController>().Health -= 1;
+                    }
                 }
-                else
-                {
-                    ControllerRef.GetComponent<EnemyController>().Health -= 1;
-                    Debug.Log("Enemy Hit!");
-                }
-
             }
         }
     }

@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private float GravityMultiplier = 3.0f;
     private float DebounceTimerf = 1.0f;
     public bool DamageImmunity;
+    public bool Swinging = false;
     public bool Invisible;
     public int Health;
 
@@ -32,27 +33,42 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
-        var X = 0;
-        if (Input.GetKey(KeyCode.D))
+        if (Health > 0)
         {
-            X += 1;
-        };
+            var X = 0;
+            if (Input.GetKey(KeyCode.D))
+            {
+                X += 1;
+            };
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            X -= 1;
-        };
+            if (Input.GetKey(KeyCode.A))
+            {
+                X -= 1;
+            };
 
-        Direction.x = X;
+            if (X == 1)
+            {
+                gameObject.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
+            }
+            if (X == -1)
+            {
+                gameObject.transform.rotation = new Quaternion(0.0f, 180.0f, 0.0f, 1.0f);
+            }
+
+            Direction.x = X;
+        }
         controller.Move(Direction * Speed * Time.deltaTime);
+
     }
 
     private void Swing()
     {
-        if (Input.GetButtonDown("Fire1") == true)
+        if (Input.GetButtonDown("Fire1") == true && Health > 0)
         {
-            Debug.Log("Swinging");
+            if (Swinging == true) return;
+            Swinging = true;
             Anim.Play("Slash", 0, 0.0f);
+            StartCoroutine(DebounceTimer("Swing"));
         }
     }
 
@@ -74,7 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!controller.isGrounded) return;
 
-        if (Input.GetKeyDown(KeyCode.Space) == true)
+        if (Input.GetKeyDown(KeyCode.Space) == true && Health > 0)
         {
 
             Velocity += JumpPower;
@@ -92,23 +108,38 @@ public class PlayerController : MonoBehaviour
         ApplyMovement();
     }
 
-    IEnumerator DebounceTimer()
+    IEnumerator DebounceTimer(string str)
     {
         yield return new WaitForSecondsRealtime(DebounceTimerf);
+        if (str == "Swing")
+        {
+            Swinging = false;
+        }
+        if (str == "Damage")
+        {
+            DamageImmunity = false;
+        }
     }
 
     IEnumerator CloakTimer()
     {
         yield return new WaitForSecondsRealtime(5.0f);
+        Invisible = false;
     }
 
     void DealDamage()
     {
         if (DamageImmunity == true) return;
         Health -= 1;
-        DamageImmunity = true;
-        StartCoroutine(DebounceTimer());
-        DamageImmunity = false;
+        if (Health == 0)
+        {
+            gameObject.transform.Find("r").GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+        }
+        else
+        {
+            DamageImmunity = true;
+            StartCoroutine(DebounceTimer("Damage"));
+        }   
     }
 
     void OnTriggerEnter(Collider collision)
@@ -124,6 +155,7 @@ public class PlayerController : MonoBehaviour
 
                 case "Pellet":
                     DealDamage();
+                    Destroy(collision.gameObject);
                     break;
 
                 case "Spike":
@@ -136,11 +168,18 @@ public class PlayerController : MonoBehaviour
 
                 case "Cloak":
                     Invisible = true;
+                    Destroy(collision.gameObject);
                     StartCoroutine(CloakTimer());
-                    Invisible = false;
+                    break;
+
+                case "Claw":
+                    Destroy(collision.gameObject);
+                    gameObject.transform.Find("Claws").GetComponent<BoxCollider>().size = new Vector3(gameObject.transform.Find("Claws").GetComponent<BoxCollider>().size.x + 0.2f, gameObject.transform.Find("Claws").GetComponent<BoxCollider>().size.y, gameObject.transform.Find("Claws").GetComponent<BoxCollider>().size.z);
+                    gameObject.transform.Find("Claws").GetComponent<BoxCollider>().center = new Vector3(gameObject.transform.Find("Claws").GetComponent<BoxCollider>().center.x + 0.1f, 0.0f, 0.0f);
                     break;
 
                 default:
+                    Debug.Log(collision.tag);
                     break;
 
             }

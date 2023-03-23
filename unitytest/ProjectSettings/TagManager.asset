@@ -8,6 +8,7 @@ TagManager:
   - Spike
   - Heart
   - Cloak
+  - Claw
   layers:
   - Default
   - TransparentFX
