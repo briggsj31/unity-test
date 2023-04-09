@@ -153,9 +153,11 @@ public class PlayerController : MonoBehaviour
                     Destroy(collision.gameObject);
                     break;
 
-                case "Pellet":
-                    DealDamage();
-                    Destroy(collision.gameObject);
+                case "Projectile":
+                    if (collision.gameObject.GetComponent<SpriteRenderer>().color.a > 0.5f) 
+                    {
+                        DealDamage();
+                    }
                     break;
 
                 case "Spike":
@@ -179,7 +181,6 @@ public class PlayerController : MonoBehaviour
                     break;
 
                 default:
-                    Debug.Log(collision.tag);
                     break;
 
             }

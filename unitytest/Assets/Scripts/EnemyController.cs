@@ -15,6 +15,8 @@ public class EnemyController : MonoBehaviour
     public bool Invisible;
     private int Speed = 4;
 
+    public GameObject PlayerEntered;
+
     private float Velocity;
 
     public Vector2 Direction = Vector2.zero;
@@ -40,7 +42,16 @@ public class EnemyController : MonoBehaviour
     }
 
     private void ApplyMovement()
-    { 
+    {
+
+        if (Direction.x == 1)
+        {
+            gameObject.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
+        }
+        if (Direction.x == -1)
+        {
+            gameObject.transform.rotation = new Quaternion(0.0f, 180.0f, 0.0f, 1.0f);
+        }
 
         controller.Move(Direction * Speed * Time.deltaTime);
 

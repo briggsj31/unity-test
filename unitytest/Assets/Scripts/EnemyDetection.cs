@@ -32,12 +32,26 @@ public class EnemyDetection : MonoBehaviour
                 {
                     X = -1;
                 }
-                LocalEnemy.GetComponent<EnemyController>().Direction = new Vector2(-X, 0);
+                if (gameObject.transform.parent.GetComponent<EnemyController>() != null)
+                {
+                    gameObject.transform.parent.GetComponent<EnemyController>().Direction = new Vector2(-X, 0);
+                }
+                if (gameObject.transform.parent.GetComponent<ThrowerEnemyController>() != null)
+                {
+                    gameObject.transform.parent.GetComponent<ThrowerEnemyController>().Direction = new Vector2(-X, 0);
+                }
             }
         }
         else
         {
-            LocalEnemy.GetComponent<EnemyController>().Direction = Vector2.zero;
+            if (gameObject.transform.parent.GetComponent<EnemyController>() != null)
+            {
+                gameObject.transform.parent.GetComponent<EnemyController>().Direction = Vector2.zero;
+            }
+            if (gameObject.transform.parent.GetComponent<ThrowerEnemyController>() != null)
+            {
+                gameObject.transform.parent.GetComponent<ThrowerEnemyController>().Direction = Vector2.zero;
+            }
         }
     }
 
@@ -46,15 +60,31 @@ public class EnemyDetection : MonoBehaviour
         if (collider.tag == "Player")
         {
             PlayerToMoveTo = collider.gameObject;
+            if (gameObject.transform.parent.GetComponent<EnemyController>() != null)
+            {
+                gameObject.transform.parent.GetComponent<EnemyController>().PlayerEntered = collider.gameObject;
+            }
+            if (gameObject.transform.parent.GetComponent<ThrowerEnemyController>() != null)
+            {
+                gameObject.transform.parent.GetComponent<ThrowerEnemyController>().PlayerEntered = collider.gameObject;
+            }
             Detected = true;
         }
     }
 
-    void OnTriggerLeave(Collider collider)
+    void OnTriggerExit(Collider collider)
     {
         if (collider.tag == "Player")
         {
-            Detected = false; 
+            Detected = false;
+            if (gameObject.transform.parent.GetComponent<EnemyController>() != null)
+            {
+                gameObject.transform.parent.GetComponent<EnemyController>().PlayerEntered = null;
+            }
+            if (gameObject.transform.parent.GetComponent<ThrowerEnemyController>() != null)
+            {
+                gameObject.transform.parent.GetComponent<ThrowerEnemyController>().PlayerEntered = null;
+            }
         }
     }
 }

@@ -9,6 +9,8 @@ TagManager:
   - Heart
   - Cloak
   - Claw
+  - Projectile
+  - EnemyDetection
   layers:
   - Default
   - TransparentFX
