@@ -8,6 +8,8 @@ TagManager:
   - Spike
   - Heart
   - Cloak
+  - EnemyDetection
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
