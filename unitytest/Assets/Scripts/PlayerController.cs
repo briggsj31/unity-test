@@ -117,6 +117,7 @@ public class PlayerController : MonoBehaviour
         }
         if (str == "Damage")
         {
+            yield return new WaitForSecondsRealtime(2.0f);
             DamageImmunity = false;
         }
     }

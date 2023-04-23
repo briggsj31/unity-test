@@ -40,6 +40,10 @@ public class EnemyDetection : MonoBehaviour
                 {
                     gameObject.transform.parent.GetComponent<ThrowerEnemyController>().Direction = new Vector2(-X, 0);
                 }
+                if (gameObject.transform.parent.GetComponent<MinibossController>() != null)
+                {
+                    gameObject.transform.parent.GetComponent<MinibossController>().Direction = new Vector2(-X, 0);
+                }
             }
         }
         else
@@ -51,6 +55,10 @@ public class EnemyDetection : MonoBehaviour
             if (gameObject.transform.parent.GetComponent<ThrowerEnemyController>() != null)
             {
                 gameObject.transform.parent.GetComponent<ThrowerEnemyController>().Direction = Vector2.zero;
+            }
+            if (gameObject.transform.parent.GetComponent<MinibossController>() != null)
+            {
+                gameObject.transform.parent.GetComponent<MinibossController>().Direction = Vector2.zero;
             }
         }
     }
@@ -68,6 +76,10 @@ public class EnemyDetection : MonoBehaviour
             {
                 gameObject.transform.parent.GetComponent<ThrowerEnemyController>().PlayerEntered = collider.gameObject;
             }
+            if (gameObject.transform.parent.GetComponent<MinibossController>() != null)
+            {
+                gameObject.transform.parent.GetComponent<MinibossController>().PlayerEntered = collider.gameObject;
+            }
             Detected = true;
         }
     }
@@ -84,6 +96,10 @@ public class EnemyDetection : MonoBehaviour
             if (gameObject.transform.parent.GetComponent<ThrowerEnemyController>() != null)
             {
                 gameObject.transform.parent.GetComponent<ThrowerEnemyController>().PlayerEntered = null;
+            }
+            if (gameObject.transform.parent.GetComponent<MinibossController>() != null)
+            {
+                gameObject.transform.parent.GetComponent<MinibossController>().PlayerEntered = null;
             }
         }
     }
