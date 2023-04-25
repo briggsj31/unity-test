@@ -8,16 +8,22 @@ public class PlayerController : MonoBehaviour
 
     private float Gravity = -9.81f;
     private float GravityMultiplier = 3.0f;
-    private float DebounceTimerf = 1.0f;
+    private int CollectedMeat = 0;
+    private float DebounceTimerf = 0.5f;
+    public int Wolfsbane = 0;
     public bool DamageImmunity;
+    public bool Swinging = false;
     public bool Invisible;
+    private bool LongClaws = false;
     public int Health;
 
     private float Velocity;
 
     private Vector2 Direction;
     private Animator Anim;
+    private Animator CharlieAnim; 
     public GameObject Claws;
+    public GameObject Body;
 
     public float Speed;
 
@@ -27,32 +33,55 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Anim = Claws.GetComponent<Animator>();
+        CharlieAnim = Body.GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
     }
 
     private void ApplyMovement()
     {
-        var X = 0;
-        if (Input.GetKey(KeyCode.D))
+        if (Health > 0)
         {
-            X += 1;
-        };
+            var X = 0;
+            if (Input.GetKey(KeyCode.D))
+            {
+                CharlieAnim.SetBool("IsMoving", true);
+                X += 1;
+            };
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            X -= 1;
-        };
+            if (Input.GetKey(KeyCode.A))
+            {
+                CharlieAnim.SetBool("IsMoving", true);
+                X -= 1;
+            };
 
-        Direction.x = X;
+            if (X == 1)
+            {
+                gameObject.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
+            }
+            if (X == -1)
+            {
+                gameObject.transform.rotation = new Quaternion(0.0f, 180.0f, 0.0f, 1.0f);
+            }
+            if (X == 0)
+            {
+                CharlieAnim.SetBool("IsMoving", false);
+            }
+
+            Direction.x = X;
+        }
         controller.Move(Direction * Speed * Time.deltaTime);
+
     }
 
     private void Swing()
     {
-        if (Input.GetButtonDown("Fire1") == true)
+        if (Input.GetButtonDown("Fire1") == true && Health > 0)
         {
-            Debug.Log("Swinging");
+            if (Swinging == true) return;
+            Swinging = true;
+            CharlieAnim.SetTrigger("Attack");
             Anim.Play("Slash", 0, 0.0f);
+            StartCoroutine(DebounceTimer("Swing"));
         }
     }
 
@@ -72,15 +101,31 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (!controller.isGrounded) return;
+        if (!controller.isGrounded)
+        {
+            CharlieAnim.ResetTrigger("Jump");
+            return;
+        }
 
-        if (Input.GetKeyDown(KeyCode.Space) == true)
+        if (Input.GetKeyDown(KeyCode.Space) == true && Health > 0)
         {
 
             Velocity += JumpPower;
+            CharlieAnim.SetTrigger("Jump");
 
         }
     }
+
+    private void Animate()
+    {
+        if (Swinging == false)
+        {
+            if (LongClaws == true) {
+
+            }
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -92,23 +137,46 @@ public class PlayerController : MonoBehaviour
         ApplyMovement();
     }
 
-    IEnumerator DebounceTimer()
+    IEnumerator DebounceTimer(string str)
     {
         yield return new WaitForSecondsRealtime(DebounceTimerf);
+        if (str == "Swing")
+        {
+            Swinging = false;
+            CharlieAnim.ResetTrigger("Attack");
+        }
+        if (str == "Damage")
+        {
+            yield return new WaitForSecondsRealtime(1.0f);
+            CharlieAnim.ResetTrigger("Injured");
+            yield return new WaitForSecondsRealtime(1.5f);
+            DamageImmunity = false;
+        }
     }
 
     IEnumerator CloakTimer()
     {
         yield return new WaitForSecondsRealtime(5.0f);
+        Invisible = false;
+        CharlieAnim.SetBool("Invisible", false);
     }
 
     void DealDamage()
     {
-        if (DamageImmunity == true) return;
+        if (DamageImmunity == true || Invisible == true) return;
         Health -= 1;
-        DamageImmunity = true;
-        StartCoroutine(DebounceTimer());
-        DamageImmunity = false;
+        CharlieAnim.SetBool("Claws", false);
+        LongClaws = false;
+        CharlieAnim.SetTrigger("Injured");
+        if (Health == 0)
+        {
+            gameObject.transform.Find("r").GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+        }
+        else
+        {
+            DamageImmunity = true;
+            StartCoroutine(DebounceTimer("Damage"));
+        }   
     }
 
     void OnTriggerEnter(Collider collision)
@@ -122,8 +190,11 @@ public class PlayerController : MonoBehaviour
                     Destroy(collision.gameObject);
                     break;
 
-                case "Pellet":
-                    DealDamage();
+                case "Projectile":
+                    if (collision.gameObject.GetComponent<SpriteRenderer>().color.a > 0.5f) 
+                    {
+                        DealDamage();
+                    }
                     break;
 
                 case "Spike":
@@ -136,8 +207,40 @@ public class PlayerController : MonoBehaviour
 
                 case "Cloak":
                     Invisible = true;
+                    CharlieAnim.SetBool("Invisible", true);
+                    Destroy(collision.gameObject);
                     StartCoroutine(CloakTimer());
-                    Invisible = false;
+                    break;
+
+                case "Claw":
+                    if (LongClaws == false)
+                    {
+                        CharlieAnim.SetBool("Claws", true);
+                        Destroy(collision.gameObject);
+                        gameObject.transform.Find("Claws").GetComponent<BoxCollider>().size = new Vector3(gameObject.transform.Find("Claws").GetComponent<BoxCollider>().size.x + 0.2f, gameObject.transform.Find("Claws").GetComponent<BoxCollider>().size.y, gameObject.transform.Find("Claws").GetComponent<BoxCollider>().size.z);
+                        gameObject.transform.Find("Claws").GetComponent<BoxCollider>().center = new Vector3(gameObject.transform.Find("Claws").GetComponent<BoxCollider>().center.x + 0.1f, 0.0f, 0.0f);
+                        LongClaws = true;
+                    }
+        
+                    break;
+
+                case "Meat":
+                    Destroy(collision.gameObject);
+                    CollectedMeat += 1;
+                    if (CollectedMeat >= 10)
+                    {
+                        if (Health < 3)
+                        {
+                            Health += 1;
+                            CollectedMeat -= 10;
+                            
+                        }
+                    }
+                    break;
+
+                case "Wolfsbane":
+                    Destroy(collision.gameObject);
+                    Wolfsbane += 1;
                     break;
 
                 default:
