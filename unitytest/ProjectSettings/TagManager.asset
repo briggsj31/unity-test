@@ -11,6 +11,8 @@ TagManager:
   - Claw
   - Projectile
   - EnemyDetection
+  - Wolfsbane
+  - Meat
   layers:
   - Default
   - TransparentFX

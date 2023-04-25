@@ -77,15 +77,8 @@ public class MinibossController : MonoBehaviour
                 StoneThrow = Instantiate(Stone);
                 StoneThrow.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                 StoneThrow.transform.position = Stone.transform.position;
-                if (gameObject.name == "Enemy_Thrower")
-                {
-                    StoneThrow.GetComponent<Rigidbody>().AddForce(transform.right * 400);
-                }
-                else
-                {
-                    StoneThrow.GetComponent<Rigidbody>().AddForce((transform.right + new Vector3(0, (transform.position - PlayerEntered.transform.position).magnitude / 13, 0)) * 400);
-                    StoneThrow.GetComponent<Rigidbody>().useGravity = true;
-                }
+
+                StoneThrow.GetComponent<Rigidbody>().AddForce(transform.right * 600);
                 StartCoroutine(DebounceTimer("Throw"));
             }
             
