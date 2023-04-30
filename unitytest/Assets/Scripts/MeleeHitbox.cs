@@ -24,20 +24,57 @@ public class MeleeHitbox : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            ControllerRef = collision.gameObject;
-            if (ControllerRef.GetComponent<EnemyController>().Health == 0)
+            if (gameObject.transform.parent.GetComponent<PlayerController>().Swinging == true)
             {
-                if (Destroying == false)
+                ControllerRef = collision.gameObject;
+                if (ControllerRef.GetComponent<EnemyController>() != null)
                 {
-                    Destroying = true;
-                    Destroy(collision.gameObject, 1);
+                    if (ControllerRef.GetComponent<EnemyController>().Health == 0)
+                    {
+                        if (Destroying == false)
+                        {
+                            Destroying = true;
+                            Destroy(collision.gameObject, 1);
+                        }
+                    }
+                    else
+                    {
+                        ControllerRef.GetComponent<EnemyController>().Health -= 1;
+                    }
                 }
-                else
+                if (ControllerRef.GetComponent<ThrowerEnemyController>() != null)
                 {
-                    ControllerRef.GetComponent<EnemyController>().Health -= 1;
-                    Debug.Log("Enemy Hit!");
+                    if (ControllerRef.GetComponent<ThrowerEnemyController>().Health == 0)
+                    {
+                        if (Destroying == false)
+                        {
+                            Destroying = true;
+                            Destroy(collision.gameObject, 1);
+                        }
+                    }
+                    else
+                    {
+                        ControllerRef.GetComponent<ThrowerEnemyController>().Health -= 1;
+                    }
+                }
+                if (ControllerRef.GetComponent<MinibossController>() != null)
+                {
+                    if (ControllerRef.GetComponent<MinibossController>().Health == 0)
+                    {
+                        if (Destroying == false)
+                        {
+                            Destroying = true;
+                            Destroy(collision.gameObject, 1);
+                        }
+                    }
+                    else
+                    {
+                        ControllerRef.GetComponent<MinibossController>().Health -= 1;
+                    }
                 }
 
+
+                
             }
         }
     }
