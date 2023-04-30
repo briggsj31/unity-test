@@ -48,7 +48,11 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
+<<<<<<< Updated upstream
   controlID: 18
+=======
+  controlID: 25
+>>>>>>> Stashed changes
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,7 +228,11 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
+<<<<<<< Updated upstream
   controlID: 23
+=======
+  controlID: 26
+>>>>>>> Stashed changes
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -249,7 +257,11 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
+<<<<<<< Updated upstream
   controlID: 24
+=======
+  controlID: 27
+>>>>>>> Stashed changes
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -465,22 +477,37 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< Updated upstream
     - Assets/Prefabs
+=======
+    - Assets/Scenes
+>>>>>>> Stashed changes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
+<<<<<<< Updated upstream
   - Assets/Prefabs
+=======
+  - Assets/Scenes
+>>>>>>> Stashed changes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\justi\Documents\GitHub\unity-test\unitytest
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< Updated upstream
     scrollPos: {x: 0, y: 17}
     m_SelectedIDs: 16640000
     m_LastClickedID: 25622
     m_ExpandedIDs: 00000000f4630000266400005a64000092640000946400009664000098640000728b000000ca9a3bffffff7f
+=======
+    scrollPos: {x: 0, y: 54.200012}
+    m_SelectedIDs: e6690000
+    m_LastClickedID: 27110
+    m_ExpandedIDs: 00000000c0690000c2690000c4690000c6690000c8690000ca690000cc690000ce690000ec69000000ca9a3b
+>>>>>>> Stashed changes
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -636,9 +663,15 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< Updated upstream
       m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: c050feff2092ffff2e92ffffc09dffffdaa6ffff04cdffff12faffff3afaffff46faffffbafaffffe0faffff6c62000090620000c2620000
+=======
+      m_SelectedIDs: fc690000
+      m_LastClickedID: 0
+      m_ExpandedIDs: b6f9ffffe4faffff
+>>>>>>> Stashed changes
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: Claws
@@ -909,9 +942,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< Updated upstream
     m_Target: {x: 2.9914787, y: -7.3126354, z: 1.6478604}
     speed: 2
     m_Value: {x: 2.9914787, y: -7.3126354, z: 1.6478604}
+=======
+    m_Target: {x: -0.29914996, y: -5.177744, z: 2.0307922}
+    speed: 2
+    m_Value: {x: -0.5949451, y: -4.6551723, z: 2.0237918}
+>>>>>>> Stashed changes
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -962,9 +1001,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< Updated upstream
     m_Target: 25.484148
     speed: 2
     m_Value: 25.484148
+=======
+    m_Target: 14.856582
+    speed: 2
+    m_Value: 15.55663
+>>>>>>> Stashed changes
   m_Ortho:
     m_Target: 1
     speed: 2
