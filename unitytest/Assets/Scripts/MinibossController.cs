@@ -4,33 +4,43 @@ using UnityEngine;
 
 public class MinibossController : MonoBehaviour
 {
-    public int Health;
+    public int Health = 3;
 
     public bool Attacking = false;
 
+    private float Gravity = -9.81f;
+    private float GravityMultiplier = 3.0f;
 
     public Vector2 Direction = Vector2.zero;
 
     public GameObject PlayerEntered;
     private Animator Anim;
-    public GameObject Claws;
+    private Animator ClawAnim;
+    public GameObject SpriteBox;
 
     private GameObject Stone;
     private GameObject StoneThrow;
 
-    CharacterController controller;
+    private int Speed = 3;
+    public int JumpPower;
+
+    private float Velocity;
+
+    private CharacterController controller;
 
     void Start()
     {
-        Anim = Claws.GetComponent<Animator>();
-        //controller = GetComponent<CharacterController>();
+        Anim = SpriteBox.GetComponent<Animator>();
+        ClawAnim = gameObject.transform.Find("Claws").gameObject.GetComponent<Animator>();
+        controller = gameObject.GetComponent<CharacterController>();
         Stone = gameObject.transform.Find("Stone").gameObject;
         Stone.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
     }
 
     void Update()
     {
-        Rotate();
+        ApplyGravity();
+        ApplyMovement();
         Attack();
     }
 
@@ -38,27 +48,16 @@ public class MinibossController : MonoBehaviour
     {
         if (Inp == "Throw") {
             yield return new WaitForSecondsRealtime(2.0f);
+            Anim.ResetTrigger("Shoot");
         }
         else
         {
-            yield return new WaitForSecondsRealtime(0.8f);
+            yield return new WaitForSecondsRealtime(1.0f);
+            Anim.ResetTrigger("Slash");
         }
-        
-
         Attacking = false;
     }
 
-    private void Rotate()
-    {
-        if (Direction.x == 1)
-        {
-            gameObject.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
-        }
-        if (Direction.x == -1)
-        {
-            gameObject.transform.rotation = new Quaternion(0.0f, 180.0f, 0.0f, 1.0f);
-        }
-    }
 
     private void Attack()
     {
@@ -69,11 +68,13 @@ public class MinibossController : MonoBehaviour
             Debug.Log(distance);
             if (distance < 6.0f)
             {
-                Anim.Play("Slash", 0, 0.0f);
+                Anim.SetTrigger("Slash");
+                ClawAnim.Play("Slash", 0, 0.0f);
                 StartCoroutine(DebounceTimer("Swing"));
             }
             else
             {
+                Anim.SetTrigger("Shoot");
                 StoneThrow = Instantiate(Stone);
                 StoneThrow.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                 StoneThrow.transform.position = Stone.transform.position;
@@ -81,11 +82,42 @@ public class MinibossController : MonoBehaviour
                 StoneThrow.GetComponent<Rigidbody>().AddForce(transform.right * 600);
                 StartCoroutine(DebounceTimer("Throw"));
             }
-            
-
-
-            
         }
 
+    }
+
+    private void ApplyMovement()
+    {
+
+        if (Direction.x == 1)
+        {
+            gameObject.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
+            Anim.SetBool("IsMoving", true);
+        }
+        if (Direction.x == -1)
+        {
+            gameObject.transform.rotation = new Quaternion(0.0f, 180.0f, 0.0f, 1.0f);
+            Anim.SetBool("IsMoving", true);
+        }
+        if (Direction.x == 0)
+        {
+            Anim.SetBool("IsMoving", false);
+        }
+
+        controller.Move(Direction * Speed * Time.deltaTime);
+    }
+
+    private void ApplyGravity()
+    {
+        if (controller.isGrounded && Velocity < 0.0f)
+        {
+            Velocity = -1.0f;
+        }
+        else
+        {
+            Velocity += Gravity * GravityMultiplier * Time.deltaTime;
+        };
+
+        Direction.y = Velocity;
     }
 }
