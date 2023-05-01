@@ -16,11 +16,12 @@ public class PlayerController : MonoBehaviour
     public bool Invisible;
     private bool LongClaws = false;
     public int Health;
+    public Canvas UserInterface;
 
     private float Velocity;
 
     private Vector2 Direction;
-    private Animator Anim;
+   // private Animator Anim;
     private Animator CharlieAnim; 
     public GameObject Claws;
     public GameObject Body;
@@ -32,7 +33,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Anim = Claws.GetComponent<Animator>();
+        //Anim = Claws.GetComponent<Animator>();
         CharlieAnim = Body.GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
     }
@@ -78,9 +79,47 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1") == true && Health > 0)
         {
             if (Swinging == true) return;
+            if (gameObject.transform.Find("Claws").gameObject.GetComponent<MeleeHitbox>().EnemyToDamage != null)
+            {
+                GameObject ControllerRef = gameObject.transform.Find("Claws").gameObject.GetComponent<MeleeHitbox>().EnemyToDamage;
+                if (ControllerRef.GetComponent<EnemyController>() != null)
+                {
+                    if (ControllerRef.GetComponent<EnemyController>().Health == 0)
+                    {
+
+                        Destroy(ControllerRef, 1);
+                    }
+                    else
+                    {
+                        ControllerRef.GetComponent<EnemyController>().Health -= 1;
+                    }
+                }
+                if (ControllerRef.GetComponent<ThrowerEnemyController>() != null)
+                {
+                    if (ControllerRef.GetComponent<ThrowerEnemyController>().Health == 0)
+                    {
+                        Destroy(ControllerRef, 1);
+                    }
+                    else
+                    {
+                        ControllerRef.GetComponent<ThrowerEnemyController>().Health -= 1;
+                    }
+                }
+                if (ControllerRef.GetComponent<MinibossController>() != null)
+                {
+                    if (ControllerRef.GetComponent<MinibossController>().Health == 0)
+                    {
+                        Destroy(ControllerRef, 1);
+                    }
+                    else
+                    {
+                        ControllerRef.GetComponent<MinibossController>().Health -= 1;
+                    }
+                }
+            }
             Swinging = true;
             CharlieAnim.SetTrigger("Attack");
-            Anim.Play("Slash", 0, 0.0f);
+            //Anim.Play("Slash", 0, 0.0f);
             StartCoroutine(DebounceTimer("Swing"));
         }
     }
@@ -165,6 +204,7 @@ public class PlayerController : MonoBehaviour
     {
         if (DamageImmunity == true || Invisible == true) return;
         Health -= 1;
+        UserInterface.GetComponent<DeathScreen>().ChangeHealth(Health);
         CharlieAnim.SetBool("Claws", false);
         LongClaws = false;
         CharlieAnim.SetTrigger("Injured");

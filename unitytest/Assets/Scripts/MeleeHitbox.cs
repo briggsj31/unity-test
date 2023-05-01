@@ -6,12 +6,12 @@ public class MeleeHitbox : MonoBehaviour
 {
 
     private GameObject ControllerRef;
-    private bool Destroying = false;
-
+    public bool CanDamage = false;
+    public GameObject EnemyToDamage;
     // Start is called before the first frame update
     void Start()
     {
-        
+        EnemyToDamage = null;
     }
 
     // Update is called once per frame
@@ -24,18 +24,17 @@ public class MeleeHitbox : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            if (gameObject.transform.parent.GetComponent<PlayerController>().Swinging == true)
+            EnemyToDamage = collision.gameObject;
+            /*
+            if (gameObject.transform.parent.gameObject.GetComponent<PlayerController>().Swinging == true)
             {
                 ControllerRef = collision.gameObject;
                 if (ControllerRef.GetComponent<EnemyController>() != null)
                 {
                     if (ControllerRef.GetComponent<EnemyController>().Health == 0)
                     {
-                        if (Destroying == false)
-                        {
-                            Destroying = true;
-                            Destroy(collision.gameObject, 1);
-                        }
+
+                        Destroy(ControllerRef, 1);
                     }
                     else
                     {
@@ -46,11 +45,7 @@ public class MeleeHitbox : MonoBehaviour
                 {
                     if (ControllerRef.GetComponent<ThrowerEnemyController>().Health == 0)
                     {
-                        if (Destroying == false)
-                        {
-                            Destroying = true;
-                            Destroy(collision.gameObject, 1);
-                        }
+                        Destroy(ControllerRef, 1);
                     }
                     else
                     {
@@ -61,20 +56,30 @@ public class MeleeHitbox : MonoBehaviour
                 {
                     if (ControllerRef.GetComponent<MinibossController>().Health == 0)
                     {
-                        if (Destroying == false)
-                        {
-                            Destroying = true;
-                            Destroy(collision.gameObject, 1);
-                        }
+                        Destroy(ControllerRef, 1);
                     }
                     else
                     {
                         ControllerRef.GetComponent<MinibossController>().Health -= 1;
                     }
                 }
+                CanDamage = true;
 
 
-                
+
+            } */
+        }
+    }
+
+
+    void OnTriggerLeave(Collider collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            if (collision.gameObject == EnemyToDamage)
+            {
+                CanDamage = false;
+                EnemyToDamage = null;
             }
         }
     }
