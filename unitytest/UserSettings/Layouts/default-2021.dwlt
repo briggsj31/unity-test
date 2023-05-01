@@ -17,9 +17,15 @@ MonoBehaviour:
     x: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     y: 43
     width: 2560
     height: 1357
+=======
+    y: 43.2
+    width: 1536
+    height: 772.8
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
     y: 43.2
     width: 1536
@@ -57,12 +63,21 @@ MonoBehaviour:
     y: 30
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 2560
     height: 1307
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
   controlID: 18
+=======
+    width: 1536
+    height: 722.8
+  m_MinSize: {x: 300, y: 200}
+  m_MaxSize: {x: 24288, y: 16192}
+  vertical: 0
+  controlID: 21
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
     width: 1536
     height: 722.8
@@ -96,6 +111,7 @@ MonoBehaviour:
     serializedVersion: 2
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 1980
     y: 0
     width: 580
@@ -109,11 +125,18 @@ MonoBehaviour:
     x: 1188
     y: 0
 >>>>>>> parent of c8e042d (recurringBackground)
+=======
+    x: 1188
+    y: 0
+>>>>>>> parent of c8e042d (recurringBackground)
     width: 348
     height: 722.8
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of c8e042d (recurringBackground)
+=======
 >>>>>>> parent of c8e042d (recurringBackground)
 =======
 >>>>>>> parent of c8e042d (recurringBackground)
@@ -141,11 +164,14 @@ MonoBehaviour:
     y: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 314
     height: 963
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
 =======
+=======
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
 >>>>>>> parent of c8e042d (recurringBackground)
     width: 188
@@ -176,9 +202,15 @@ MonoBehaviour:
     x: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     y: 963
     width: 1980
     height: 344
+=======
+    y: 459.2
+    width: 1188
+    height: 263.59998
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
     y: 459.2
     width: 1188
@@ -220,8 +252,13 @@ MonoBehaviour:
     y: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 2560
     height: 1357
+=======
+    width: 1536
+    height: 772.8
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
     width: 1536
     height: 772.8
@@ -255,7 +292,11 @@ MonoBehaviour:
     y: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 2560
+=======
+    width: 1536
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
     width: 1536
 >>>>>>> parent of c8e042d (recurringBackground)
@@ -284,8 +325,13 @@ MonoBehaviour:
     x: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     y: 1337
     width: 2560
+=======
+    y: 752.8
+    width: 1536
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
     y: 752.8
     width: 1536
@@ -318,12 +364,21 @@ MonoBehaviour:
     y: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 1980
     height: 1307
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
   controlID: 23
+=======
+    width: 1188
+    height: 722.8
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 16192, y: 16192}
+  vertical: 1
+  controlID: 61
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
     width: 1188
     height: 722.8
@@ -361,12 +416,21 @@ MonoBehaviour:
     y: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 1980
     height: 963
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
   controlID: 24
+=======
+    width: 1188
+    height: 459.2
+  m_MinSize: {x: 200, y: 100}
+  m_MaxSize: {x: 16192, y: 8096}
+  vertical: 0
+  controlID: 50
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
     width: 1188
     height: 459.2
@@ -400,10 +464,17 @@ MonoBehaviour:
     serializedVersion: 2
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 314
     y: 0
     width: 1666
     height: 963
+=======
+    x: 188
+    y: 0
+    width: 1000
+    height: 459.2
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
     x: 188
     y: 0
@@ -447,6 +518,7 @@ MonoBehaviour:
     serializedVersion: 2
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 314
     y: 73
     width: 1664
@@ -454,11 +526,16 @@ MonoBehaviour:
 =======
 =======
 >>>>>>> parent of c8e042d (recurringBackground)
+=======
+>>>>>>> parent of c8e042d (recurringBackground)
     x: 188
     y: 73.6
     width: 998
     height: 415
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of c8e042d (recurringBackground)
+=======
 >>>>>>> parent of c8e042d (recurringBackground)
 =======
 >>>>>>> parent of c8e042d (recurringBackground)
@@ -607,9 +684,15 @@ MonoBehaviour:
     x: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     y: 1036
     width: 1979
     height: 323
+=======
+    y: 532.8
+    width: 1187
+    height: 242.59998
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
     y: 532.8
     width: 1187
@@ -651,6 +734,7 @@ MonoBehaviour:
   m_FolderTreeState:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     scrollPos: {x: 0, y: 17}
     m_SelectedIDs: 16640000
     m_LastClickedID: 25622
@@ -658,11 +742,16 @@ MonoBehaviour:
 =======
 =======
 >>>>>>> parent of c8e042d (recurringBackground)
+=======
+>>>>>>> parent of c8e042d (recurringBackground)
     scrollPos: {x: 0, y: 17.400024}
     m_SelectedIDs: c4660000
     m_LastClickedID: 26308
     m_ExpandedIDs: 00000000b0660000cc6600000867000000ca9a3bffffff7f
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of c8e042d (recurringBackground)
+=======
 >>>>>>> parent of c8e042d (recurringBackground)
 =======
 >>>>>>> parent of c8e042d (recurringBackground)
@@ -695,7 +784,11 @@ MonoBehaviour:
     m_LastClickedID: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000f4630000
+=======
+    m_ExpandedIDs: 00000000b0660000
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
     m_ExpandedIDs: 00000000b0660000
 >>>>>>> parent of c8e042d (recurringBackground)
@@ -779,6 +872,7 @@ MonoBehaviour:
     serializedVersion: 2
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 1980
     y: 73
     width: 579
@@ -786,11 +880,16 @@ MonoBehaviour:
 =======
 =======
 >>>>>>> parent of c8e042d (recurringBackground)
+=======
+>>>>>>> parent of c8e042d (recurringBackground)
     x: 1188
     y: 73.6
     width: 347
     height: 701.8
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of c8e042d (recurringBackground)
+=======
 >>>>>>> parent of c8e042d (recurringBackground)
 =======
 >>>>>>> parent of c8e042d (recurringBackground)
@@ -834,9 +933,15 @@ MonoBehaviour:
     x: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     y: 73
     width: 313
     height: 942
+=======
+    y: 73.6
+    width: 187
+    height: 438.2
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
     y: 73.6
     width: 187
@@ -855,10 +960,17 @@ MonoBehaviour:
     m_TreeViewState:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: c050feff2092ffff2e92ffffc09dffffdaa6ffff04cdffff12faffff3afaffff46faffffbafaffffe0faffff6c62000090620000c2620000
+=======
+      scrollPos: {x: 0, y: 32}
+      m_SelectedIDs: 36670000
+      m_LastClickedID: 0
+      m_ExpandedIDs: e4faffff
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
       scrollPos: {x: 0, y: 32}
       m_SelectedIDs: 36670000
@@ -916,6 +1028,7 @@ MonoBehaviour:
     serializedVersion: 2
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 314
     y: 73
     width: 1664
@@ -923,11 +1036,16 @@ MonoBehaviour:
 =======
 =======
 >>>>>>> parent of c8e042d (recurringBackground)
+=======
+>>>>>>> parent of c8e042d (recurringBackground)
     x: 188
     y: 73.6
     width: 998
     height: 438.2
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of c8e042d (recurringBackground)
+=======
 >>>>>>> parent of c8e042d (recurringBackground)
 =======
 >>>>>>> parent of c8e042d (recurringBackground)
@@ -1156,9 +1274,15 @@ MonoBehaviour:
   m_Position:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Target: {x: 2.9914787, y: -7.3126354, z: 1.6478604}
     speed: 2
     m_Value: {x: 2.9914787, y: -7.3126354, z: 1.6478604}
+=======
+    m_Target: {x: 45.34787, y: 9.089054, z: 3.077176}
+    speed: 2
+    m_Value: {x: 45.34787, y: 9.089054, z: 3.077176}
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
     m_Target: {x: 45.34787, y: 9.089054, z: 3.077176}
     speed: 2
@@ -1221,9 +1345,15 @@ MonoBehaviour:
   m_Size:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Target: 25.484148
     speed: 2
     m_Value: 25.484148
+=======
+    m_Target: 38.409996
+    speed: 2
+    m_Value: 38.409996
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
     m_Target: 38.409996
     speed: 2
@@ -1280,6 +1410,7 @@ MonoBehaviour:
     serializedVersion: 2
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 314
     y: 73
     width: 1664
@@ -1287,11 +1418,16 @@ MonoBehaviour:
 =======
 =======
 >>>>>>> parent of c8e042d (recurringBackground)
+=======
+>>>>>>> parent of c8e042d (recurringBackground)
     x: 188
     y: 73.6
     width: 998
     height: 438.2
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of c8e042d (recurringBackground)
+=======
 >>>>>>> parent of c8e042d (recurringBackground)
 =======
 >>>>>>> parent of c8e042d (recurringBackground)
@@ -1307,7 +1443,11 @@ MonoBehaviour:
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_TargetSize: {x: 1664, y: 921}
+=======
+  m_TargetSize: {x: 998, y: 417.2}
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
   m_TargetSize: {x: 998, y: 417.2}
 >>>>>>> parent of c8e042d (recurringBackground)
@@ -1330,6 +1470,7 @@ MonoBehaviour:
     vZoomLockedByDefault: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_HBaseRangeMin: -832
     m_HBaseRangeMax: 832
     m_VBaseRangeMin: -460.5
@@ -1337,11 +1478,16 @@ MonoBehaviour:
 =======
 =======
 >>>>>>> parent of c8e042d (recurringBackground)
+=======
+>>>>>>> parent of c8e042d (recurringBackground)
     m_HBaseRangeMin: -399.2
     m_HBaseRangeMax: 399.2
     m_VBaseRangeMin: -166.88
     m_VBaseRangeMax: 166.88
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of c8e042d (recurringBackground)
+=======
 >>>>>>> parent of c8e042d (recurringBackground)
 =======
 >>>>>>> parent of c8e042d (recurringBackground)
@@ -1364,10 +1510,17 @@ MonoBehaviour:
       y: 21
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       width: 1664
       height: 921
     m_Scale: {x: 1, y: 1}
     m_Translation: {x: 832, y: 460.5}
+=======
+      width: 998
+      height: 417.2
+    m_Scale: {x: 1, y: 1}
+    m_Translation: {x: 499, y: 208.6}
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
       width: 998
       height: 417.2
@@ -1388,6 +1541,7 @@ MonoBehaviour:
       serializedVersion: 2
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       x: -832
       y: -460.5
       width: 1664
@@ -1395,6 +1549,15 @@ MonoBehaviour:
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1664, y: 942}
+=======
+      x: -499
+      y: -208.6
+      width: 998
+      height: 417.2
+    m_MinimalGUI: 1
+  m_defaultScale: 1
+  m_LastWindowPixelSize: {x: 1247.5, y: 547.75}
+>>>>>>> parent of c8e042d (recurringBackground)
 =======
       x: -499
       y: -208.6
