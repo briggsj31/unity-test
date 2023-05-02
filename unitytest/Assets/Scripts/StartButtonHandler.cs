@@ -26,17 +26,20 @@ public class StartButtonHandler : MonoBehaviour
 
     public void OnStartClicked()
     {
+        gameObject.transform.Find("Click").gameObject.GetComponent<AudioSource>().Play(0);
         Debug.Log("Clicked!");
-        SceneManager.LoadScene("Level1", LoadSceneMode.Single);
+        SceneManager.LoadScene("StreetLevel", LoadSceneMode.Single);
     }
 
     public void OnQuitClicked()
     {
+        gameObject.transform.Find("Click").gameObject.GetComponent<AudioSource>().Play(0);
         Application.Quit();
     }
 
     public void OnCreditsClicked()
     {
+        gameObject.transform.Find("Click").gameObject.GetComponent<AudioSource>().Play(0);
         if (Toggle == false)
         {
             Toggle = true;

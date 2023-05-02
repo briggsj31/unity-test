@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public int JumpPower;
 
     private float Gravity = -9.81f;
-    private float GravityMultiplier = 3.0f;
+    private float GravityMultiplier = 2.0f;
     private int CollectedMeat = 0;
     private float DebounceTimerf = 0.5f;
     public int Wolfsbane = 0;
@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
             Swinging = true;
+            gameObject.transform.Find("ClawSwipe").gameObject.GetComponent<AudioSource>().Play(0);
             CharlieAnim.SetTrigger("Attack");
             //Anim.Play("Slash", 0, 0.0f);
             StartCoroutine(DebounceTimer("Swing"));
@@ -142,7 +143,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!controller.isGrounded)
         {
-            CharlieAnim.ResetTrigger("Jump");
             return;
         }
 
@@ -151,6 +151,7 @@ public class PlayerController : MonoBehaviour
 
             Velocity += JumpPower;
             CharlieAnim.SetTrigger("Jump");
+            gameObject.transform.Find("Jump").gameObject.GetComponent<AudioSource>().Play(0);
 
         }
     }
@@ -165,6 +166,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private bool JumpSound = false;
+    private bool WalkSound = false;
 
     // Update is called once per frame
     void Update()
@@ -174,6 +177,29 @@ public class PlayerController : MonoBehaviour
         ApplyGravity();
         Jump();
         ApplyMovement();
+        if (controller.isGrounded)
+        {
+            if (JumpSound == true)
+            {
+                JumpSound = false;
+                CharlieAnim.ResetTrigger("Jump");
+            }
+            if (Direction.x != 0 && WalkSound == false)
+            {
+                WalkSound = true;
+                gameObject.transform.Find("WalkingSound").gameObject.GetComponent<AudioSource>().Play(0);
+            }
+            
+        }
+        if (!controller.isGrounded)
+        {
+            if (JumpSound == false)
+            {
+                JumpSound = true;
+            }
+            gameObject.transform.Find("WalkingSound").gameObject.GetComponent<AudioSource>().Pause();
+            WalkSound = false;
+        }
     }
 
     IEnumerator DebounceTimer(string str)
@@ -200,23 +226,42 @@ public class PlayerController : MonoBehaviour
         CharlieAnim.SetBool("Invisible", false);
     }
 
-    void DealDamage()
+    void DealDamage(string str)
     {
-        if (DamageImmunity == true || Invisible == true) return;
-        Health -= 1;
-        UserInterface.GetComponent<DeathScreen>().ChangeHealth(Health);
-        CharlieAnim.SetBool("Claws", false);
-        LongClaws = false;
-        CharlieAnim.SetTrigger("Injured");
-        if (Health == 0)
+        if (str == "InstaKill")
         {
+            Health = 0;
+            CharlieAnim.SetTrigger("Injured");
+            UserInterface.GetComponent<DeathScreen>().ChangeHealth(Health);
             gameObject.transform.Find("r").GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
         }
         else
         {
-            DamageImmunity = true;
-            StartCoroutine(DebounceTimer("Damage"));
-        }   
+            if (DamageImmunity == true || Invisible == true) return;
+            Health -= 1;
+            if (Health == 1)
+            {
+                gameObject.transform.Find("LowHealth").gameObject.GetComponent<AudioSource>().Play(0);
+            }
+            if (Health >= 2)
+            {
+                gameObject.transform.Find("TakeDamage").gameObject.GetComponent<AudioSource>().Play(0);
+            }
+            UserInterface.GetComponent<DeathScreen>().ChangeHealth(Health);
+            CharlieAnim.SetBool("Claws", false);
+            LongClaws = false;
+            CharlieAnim.SetTrigger("Injured");
+            if (Health == 0)
+            {
+                gameObject.transform.Find("r").GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+            }
+            else
+            {
+                DamageImmunity = true;
+                StartCoroutine(DebounceTimer("Damage"));
+            }
+        }
+        
     }
 
     void OnTriggerEnter(Collider collision)
@@ -227,26 +272,29 @@ public class PlayerController : MonoBehaviour
             {
                 case "Heart":
                     Health += 1;
+                    gameObject.transform.Find("HeartCollection").gameObject.GetComponent<AudioSource>().Play(0);
+                    UserInterface.GetComponent<DeathScreen>().ChangeHealth(Health);
                     Destroy(collision.gameObject);
                     break;
 
                 case "Projectile":
                     if (collision.gameObject.GetComponent<SpriteRenderer>().color.a > 0.5f) 
                     {
-                        DealDamage();
+                        DealDamage("");
                     }
                     break;
 
                 case "Spike":
-                    DealDamage();
+                    DealDamage("");
                     break;
 
                 case "Enemy":
-                    DealDamage();
+                    DealDamage("");
                     break;
 
                 case "Cloak":
                     Invisible = true;
+                    gameObject.transform.Find("CloakCollect").gameObject.GetComponent<AudioSource>().Play(0);
                     CharlieAnim.SetBool("Invisible", true);
                     Destroy(collision.gameObject);
                     StartCoroutine(CloakTimer());
@@ -255,6 +303,7 @@ public class PlayerController : MonoBehaviour
                 case "Claw":
                     if (LongClaws == false)
                     {
+                        gameObject.transform.Find("ClawPowerup").gameObject.GetComponent<AudioSource>().Play(0);
                         CharlieAnim.SetBool("Claws", true);
                         Destroy(collision.gameObject);
                         gameObject.transform.Find("Claws").GetComponent<BoxCollider>().size = new Vector3(gameObject.transform.Find("Claws").GetComponent<BoxCollider>().size.x + 0.2f, gameObject.transform.Find("Claws").GetComponent<BoxCollider>().size.y, gameObject.transform.Find("Claws").GetComponent<BoxCollider>().size.z);
@@ -279,9 +328,21 @@ public class PlayerController : MonoBehaviour
                     break;
 
                 case "Wolfsbane":
+                    gameObject.transform.Find("WolfsbanePickup").gameObject.GetComponent<AudioSource>().Play(0);
                     Destroy(collision.gameObject);
                     Wolfsbane += 1;
                     break;
+
+                case "Water":
+                    gameObject.transform.Find("LowHealth").gameObject.GetComponent<AudioSource>().Play(0);
+                    DealDamage("InstaKill");
+                    break;
+
+                case "Sewer":
+                    gameObject.transform.Find("LowHealth").gameObject.GetComponent<AudioSource>().Play(0);
+                    DealDamage("InstaKill");
+                    break;
+
 
                 default:
                     break;

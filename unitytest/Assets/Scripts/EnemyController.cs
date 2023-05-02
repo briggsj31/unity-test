@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        //Anim = Claws.GetComponent<Animator>();
+        Anim = gameObject.transform.Find("r").gameObject.GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
     }
 
@@ -39,6 +39,8 @@ public class EnemyController : MonoBehaviour
     IEnumerator DebounceTimer()
     {
         yield return new WaitForSecondsRealtime(DebounceTimerf);
+        Swinging = false;
+        Anim.ResetTrigger("Attack");
     }
 
     private void ApplyMovement()
@@ -46,11 +48,17 @@ public class EnemyController : MonoBehaviour
 
         if (Direction.x == 1)
         {
+            Anim.SetBool("IsMoving", true);
             gameObject.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
         }
         if (Direction.x == -1)
         {
+            Anim.SetBool("IsMoving", true);
             gameObject.transform.rotation = new Quaternion(0.0f, 180.0f, 0.0f, 1.0f);
+        }
+        if (Direction.x == 0)
+        {
+            Anim.SetBool("IsMoving", false);
         }
 
         controller.Move(Direction * Speed * Time.deltaTime);
@@ -60,10 +68,9 @@ public class EnemyController : MonoBehaviour
 
     private void Attack()
     {
-        // Anim.Play("Slash", 0, 0.0f);
+        Anim.SetTrigger("Attack");
         Swinging = true;
         StartCoroutine(DebounceTimer());
-        Swinging = false;
     }
 
     private void ApplyGravity()

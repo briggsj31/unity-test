@@ -18,11 +18,13 @@ public class ThrowerEnemyController : MonoBehaviour
     private GameObject Stone;
     private GameObject StoneThrow;
 
+    private Animator Anim;
+
     CharacterController controller;
 
     void Start()
     {
-        //Anim = Claws.GetComponent<Animator>();
+        Anim = gameObject.transform.Find("r").gameObject.GetComponent<Animator>();
         //controller = GetComponent<CharacterController>();
         Stone = gameObject.transform.Find("Stone").gameObject;
         Stone.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
@@ -37,7 +39,7 @@ public class ThrowerEnemyController : MonoBehaviour
     IEnumerator DebounceTimer()
     {
         yield return new WaitForSecondsRealtime(DebounceTimerf);
-
+        Anim.ResetTrigger("Attack");
         Attacking = false;
     }
 
@@ -57,7 +59,7 @@ public class ThrowerEnemyController : MonoBehaviour
     {
         if (Attacking == false && Direction != Vector2.zero)
         {
-            // Anim.Play("Slash", 0, 0.0f);
+            Anim.SetTrigger("Attack");
             Attacking = true;
             StoneThrow = Instantiate(Stone);
             StoneThrow.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);

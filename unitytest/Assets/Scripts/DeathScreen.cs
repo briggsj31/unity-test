@@ -25,12 +25,12 @@ public class DeathScreen : MonoBehaviour
     public void onRestartClicked()
     {
         Debug.Log("Clicked!");
-        SceneManager.LoadScene("Level1", LoadSceneMode.Single);
+        SceneManager.LoadScene("StreetLevel", LoadSceneMode.Single);
     }
 
     public void OnQuitClicked()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
     public void ChangeHealth(int NewHealth)
