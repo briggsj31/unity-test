@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -217,6 +218,11 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSecondsRealtime(1.5f);
             DamageImmunity = false;
         }
+        if (str == "Ending")
+        {
+            yield return new WaitForSecondsRealtime(1.0f);
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        }
     }
 
     IEnumerator CloakTimer()
@@ -341,6 +347,10 @@ public class PlayerController : MonoBehaviour
                 case "Sewer":
                     gameObject.transform.Find("LowHealth").gameObject.GetComponent<AudioSource>().Play(0);
                     DealDamage("InstaKill");
+                    break;
+
+                case "Ending":
+                    DebounceTimer("Ending");
                     break;
 
 

@@ -15,6 +15,7 @@ TagManager:
   - Meat
   - Sewer
   - Water
+  - Ending
   layers:
   - Default
   - TransparentFX
